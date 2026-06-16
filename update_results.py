@@ -129,13 +129,13 @@ def main():
     for m in matches:
         home_raw = m["homeTeam"]["name"]
         away_raw = m["awayTeam"]["name"]
-        home = NAME_MAP.get(home_raw)
-        away = NAME_MAP.get(away_raw)
-        if home is None:
+        home = NAME_MAP.get(home_raw) if home_raw else None
+        away = NAME_MAP.get(away_raw) if away_raw else None
+        if home_raw and home is None:
             unmapped.add(home_raw)
         elif home in records:
             records[home].append(classify(m, "home"))
-        if away is None:
+        if away_raw and away is None:
             unmapped.add(away_raw)
         elif away in records:
             records[away].append(classify(m, "away"))
