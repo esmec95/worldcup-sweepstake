@@ -124,14 +124,26 @@ def main():
         sys.exit(1)
 
     records = {t: [] for t in SWEEPSTAKE_TEAMS}
+    unmapped = set()
 
     for m in matches:
-        home = NAME_MAP.get(m["homeTeam"]["name"])
-        away = NAME_MAP.get(m["awayTeam"]["name"])
-        if home in records:
+        home_raw = m["homeTeam"]["name"]
+        away_raw = m["awayTeam"]["name"]
+        home = NAME_MAP.get(home_raw)
+        away = NAME_MAP.get(away_raw)
+        if home is None:
+            unmapped.add(home_raw)
+        elif home in records:
             records[home].append(classify(m, "home"))
-        if away in records:
+        if away is None:
+            unmapped.add(away_raw)
+        elif away in records:
             records[away].append(classify(m, "away"))
+
+    if unmapped:
+        print(f"WARNING — unmapped team names from API (add these to NAME_MAP):")
+        for name in sorted(unmapped):
+            print(f"  \"{name}\"")
 
     results = {}
     live_teams = []
