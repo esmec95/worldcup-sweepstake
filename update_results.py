@@ -95,11 +95,11 @@ def fetch_matches():
 def classify(match, side):
     """Return (pts, label, cls) for one team in one match."""
     status = match["status"]
-    ft = match["score"]["fullTime"]
-    for_g  = ft["home"] if side == "home" else ft["away"]
-    opp_g  = ft["away"] if side == "home" else ft["home"]
 
     if status == "FINISHED":
+        ft = match["score"]["fullTime"]
+        for_g = ft["home"] if side == "home" else ft["away"]
+        opp_g = ft["away"] if side == "home" else ft["home"]
         if for_g > opp_g:
             return 3, f"W {for_g}–{opp_g}", "badge-win"
         elif for_g == opp_g:
@@ -108,10 +108,11 @@ def classify(match, side):
             return 0, f"L {for_g}–{opp_g}", "badge-loss"
 
     if status in ("IN_PLAY", "PAUSED", "HALFTIME"):
-        h = ft.get("home") or 0
-        a = ft.get("away") or 0
-        live_for  = h if side == "home" else a
-        live_opp  = a if side == "home" else h
+        cur = match["score"].get("currentPeriod") or match["score"]["fullTime"]
+        h = (cur.get("home") or 0) if cur else 0
+        a = (cur.get("away") or 0) if cur else 0
+        live_for = h if side == "home" else a
+        live_opp = a if side == "home" else h
         return 0, f"Live {live_for}–{live_opp}", "badge-playing"
 
     today = date.today().isoformat()
