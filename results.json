@@ -1,141 +1,51 @@
 {
   "lastUpdated": "18 June 2026",
-  "note": "Matches in progress: Bosnia, Canada, Qatar, Switzerland — leaderboard refreshes every 5 minutes.",
+  "note": "Matches in progress: Canada, Qatar — leaderboard refreshes every 5 minutes.",
   "teams": {
-    "Spain": {
-      "pts": 1,
-      "label": "D 0–0",
-      "cls": "badge-draw"
-    },
-    "Croatia": {
-      "pts": 0,
-      "label": "L 2–4",
-      "cls": "badge-loss"
-    },
     "France": {
       "pts": 3,
       "label": "W 3–1",
       "cls": "badge-win"
-    },
-    "Ivory Coast": {
-      "pts": 3,
-      "label": "W 1–0",
-      "cls": "badge-win"
-    },
-    "Argentina": {
-      "pts": 3,
-      "label": "W 3–0",
-      "cls": "badge-win"
-    },
-    "Uzbekistan": {
-      "pts": 0,
-      "label": "L 1–3",
-      "cls": "badge-loss"
-    },
-    "Scotland": {
-      "pts": 3,
-      "label": "W 1–0",
-      "cls": "badge-win"
-    },
-    "DR Congo": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
-    },
-    "Morocco": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
-    },
-    "Belgium": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
     },
     "South Africa": {
       "pts": 1,
       "label": "0W 1D 1L",
       "cls": "badge-loss"
     },
-    "Paraguay": {
-      "pts": 0,
-      "label": "L 1–4",
-      "cls": "badge-loss"
-    },
-    "Jordan": {
-      "pts": 0,
-      "label": "L 1–3",
-      "cls": "badge-loss"
-    },
-    "Colombia": {
-      "pts": 3,
-      "label": "W 3–1",
-      "cls": "badge-win"
-    },
-    "Turkiye": {
-      "pts": 0,
-      "label": "L 0–2",
-      "cls": "badge-loss"
-    },
-    "Portugal": {
+    "Spain": {
       "pts": 1,
-      "label": "D 1–1",
+      "label": "D 0–0",
       "cls": "badge-draw"
     },
-    "Japan": {
-      "pts": 1,
-      "label": "D 2–2",
-      "cls": "badge-draw"
-    },
-    "Egypt": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
-    },
-    "Brazil": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
-    },
-    "Curacao": {
-      "pts": 0,
-      "label": "L 1–7",
-      "cls": "badge-loss"
-    },
-    "Mexico": {
-      "pts": 3,
-      "label": "W 2–0",
-      "cls": "badge-win"
-    },
-    "Canada": {
+    "Qatar": {
       "pts": 1,
       "label": "Today",
       "cls": "badge-playing"
     },
-    "New Zealand": {
-      "pts": 1,
-      "label": "D 2–2",
-      "cls": "badge-draw"
+    "Ecuador": {
+      "pts": 0,
+      "label": "L 0–1",
+      "cls": "badge-loss"
+    },
+    "Haiti": {
+      "pts": 0,
+      "label": "L 0–1",
+      "cls": "badge-loss"
+    },
+    "Argentina": {
+      "pts": 3,
+      "label": "W 3–0",
+      "cls": "badge-win"
     },
     "Cape Verde": {
       "pts": 1,
       "label": "D 0–0",
       "cls": "badge-draw"
     },
-    "Czechia": {
+    "Belgium": {
       "pts": 1,
-      "label": "0W 1D 1L",
-      "cls": "badge-loss"
-    },
-    "South Korea": {
-      "pts": 3,
-      "label": "W 2–1",
-      "cls": "badge-win"
-    },
-    "Qatar": {
-      "pts": 1,
-      "label": "Today",
-      "cls": "badge-playing"
+      "label": "D 1–1",
+      "cls": "badge-draw"
     },
     "Senegal": {
       "pts": 0,
@@ -147,62 +57,22 @@
       "label": "W 4–1",
       "cls": "badge-win"
     },
-    "Ecuador": {
+    "USA": {
+      "pts": 3,
+      "label": "W 4–1",
+      "cls": "badge-win"
+    },
+    "Iraq": {
       "pts": 0,
-      "label": "L 0–1",
+      "label": "L 1–4",
       "cls": "badge-loss"
-    },
-    "Algeria": {
-      "pts": 0,
-      "label": "L 0–3",
-      "cls": "badge-loss"
-    },
-    "Germany": {
-      "pts": 3,
-      "label": "W 7–1",
-      "cls": "badge-win"
-    },
-    "Saudi Arabia": {
-      "pts": 1,
-      "label": "D 1–1",
-      "cls": "badge-draw"
-    },
-    "Switzerland": {
-      "pts": 1,
-      "label": "Today",
-      "cls": "badge-playing"
-    },
-    "Sweden": {
-      "pts": 3,
-      "label": "W 5–1",
-      "cls": "badge-win"
-    },
-    "Netherlands": {
-      "pts": 1,
-      "label": "D 2–2",
-      "cls": "badge-draw"
-    },
-    "England": {
-      "pts": 3,
-      "label": "W 4–2",
-      "cls": "badge-win"
     },
     "Uruguay": {
       "pts": 1,
       "label": "D 1–1",
       "cls": "badge-draw"
     },
-    "Ghana": {
-      "pts": 3,
-      "label": "W 1–0",
-      "cls": "badge-win"
-    },
-    "USA": {
-      "pts": 3,
-      "label": "W 4–1",
-      "cls": "badge-win"
-    },
-    "Haiti": {
+    "Panama": {
       "pts": 0,
       "label": "L 0–1",
       "cls": "badge-loss"
@@ -212,35 +82,165 @@
       "label": "W 2–0",
       "cls": "badge-win"
     },
-    "Panama": {
-      "pts": 0,
-      "label": "L 0–1",
+    "Ghana": {
+      "pts": 3,
+      "label": "W 1–0",
+      "cls": "badge-win"
+    },
+    "Bosnia": {
+      "pts": 1,
+      "label": "0W 1D 1L",
       "cls": "badge-loss"
+    },
+    "Ivory Coast": {
+      "pts": 3,
+      "label": "W 1–0",
+      "cls": "badge-win"
+    },
+    "Brazil": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Japan": {
+      "pts": 1,
+      "label": "D 2–2",
+      "cls": "badge-draw"
     },
     "Austria": {
       "pts": 3,
       "label": "W 3–1",
       "cls": "badge-win"
     },
-    "Bosnia": {
+    "New Zealand": {
       "pts": 1,
-      "label": "Today",
-      "cls": "badge-playing"
+      "label": "D 2–2",
+      "cls": "badge-draw"
     },
     "Tunisia": {
       "pts": 0,
       "label": "L 1–5",
       "cls": "badge-loss"
     },
-    "Iraq": {
+    "Portugal": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Mexico": {
+      "pts": 3,
+      "label": "W 2–0",
+      "cls": "badge-win"
+    },
+    "Canada": {
+      "pts": 1,
+      "label": "Today",
+      "cls": "badge-playing"
+    },
+    "Curacao": {
+      "pts": 0,
+      "label": "L 1–7",
+      "cls": "badge-loss"
+    },
+    "Jordan": {
+      "pts": 0,
+      "label": "L 1–3",
+      "cls": "badge-loss"
+    },
+    "England": {
+      "pts": 3,
+      "label": "W 4–2",
+      "cls": "badge-win"
+    },
+    "Scotland": {
+      "pts": 3,
+      "label": "W 1–0",
+      "cls": "badge-win"
+    },
+    "DR Congo": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Paraguay": {
       "pts": 0,
       "label": "L 1–4",
       "cls": "badge-loss"
+    },
+    "Switzerland": {
+      "pts": 4,
+      "label": "1W 1D 0L",
+      "cls": "badge-win"
     },
     "Iran": {
       "pts": 1,
       "label": "D 2–2",
       "cls": "badge-draw"
+    },
+    "Sweden": {
+      "pts": 3,
+      "label": "W 5–1",
+      "cls": "badge-win"
+    },
+    "South Korea": {
+      "pts": 3,
+      "label": "W 2–1",
+      "cls": "badge-win"
+    },
+    "Croatia": {
+      "pts": 0,
+      "label": "L 2–4",
+      "cls": "badge-loss"
+    },
+    "Morocco": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Germany": {
+      "pts": 3,
+      "label": "W 7–1",
+      "cls": "badge-win"
+    },
+    "Turkiye": {
+      "pts": 0,
+      "label": "L 0–2",
+      "cls": "badge-loss"
+    },
+    "Czechia": {
+      "pts": 1,
+      "label": "0W 1D 1L",
+      "cls": "badge-loss"
+    },
+    "Egypt": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Algeria": {
+      "pts": 0,
+      "label": "L 0–3",
+      "cls": "badge-loss"
+    },
+    "Saudi Arabia": {
+      "pts": 1,
+      "label": "D 1–1",
+      "cls": "badge-draw"
+    },
+    "Netherlands": {
+      "pts": 1,
+      "label": "D 2–2",
+      "cls": "badge-draw"
+    },
+    "Uzbekistan": {
+      "pts": 0,
+      "label": "L 1–3",
+      "cls": "badge-loss"
+    },
+    "Colombia": {
+      "pts": 3,
+      "label": "W 3–1",
+      "cls": "badge-win"
     }
   }
 }
