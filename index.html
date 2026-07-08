@@ -144,7 +144,7 @@
     <div class="stat"><div class="lbl">Stage</div><div class="val sm" id="s-stage">Quarter-finals</div></div>
     <div class="stat"><div class="lbl">Still alive</div><div class="val g" id="s-alive">—</div></div>
     <div class="stat"><div class="lbl">Eliminated</div><div class="val a" id="s-out">—</div></div>
-    <div class="stat"><div class="lbl">Updated</div><div class="val sm" id="s-time">—</div></div>
+    <div class="stat"><div class="lbl">Data as of</div><div class="val sm" id="s-time">—</div></div>
   </div>
 
   <div id="loading"><div class="spinner"></div>Loading scores…</div>
@@ -158,10 +158,7 @@
 </div>
 <script>
 /* ── CONFIG ── */
-const API_KEY   = "04538c66c2e14c918c0712eb4ca423e7";
-const API_BASE  = "https://api.football-data.org/v4";
-const COMP      = "WC";
-const REFRESH   = 3 * 60 * 1000;
+const REFRESH   = 5 * 60 * 1000;  // re-read scores.json every 5 minutes
 
 /* ── SWEEPSTAKE ──
    status: "qf" = still in (quarter-finalist), "out" = eliminated
@@ -271,59 +268,39 @@ window.addEventListener("DOMContentLoaded", loadData);
 async function loadData() {
   setStatus("Loading…", false, false);
   try {
-    const res = await fetch(
-      `${API_BASE}/competitions/${COMP}/matches?status=FINISHED,IN_PLAY,PAUSED`,
-      { headers: { "X-Auth-Token": API_KEY } }
-    );
-    if (res.status === 403 || res.status === 400) { showErr(`API key error (${res.status}).`); return; }
-    if (res.status === 429) { showErr("Rate limit hit — retrying in 3 minutes."); scheduleRefresh(); return; }
-    if (!res.ok) { showErr(`API error ${res.status}. Retrying…`); scheduleRefresh(); return; }
+    const res = await fetch(`results.json?t=${Date.now()}`);
+    if (!res.ok) { showErr(`Could not load results.json (${res.status}). Has the GitHub Action run yet?`); scheduleRefresh(); return; }
     const data = await res.json();
-    processAndRender(data.matches || []);
+    processAndRender(data);
     scheduleRefresh();
   } catch(e) {
-    showErr(`Network error: ${e.message}. Retrying…`);
+    showErr(`Could not load results — ${e.message}. Retrying…`);
     scheduleRefresh();
   }
 }
 
-function processAndRender(matches) {
-  /* build lookup: apiTeamName → { isLive, isFinished } */
-  const LIVE_SET = new Set(["IN_PLAY","PAUSED","HALFTIME"]);
-  const teamLookup = {};
-  let hasLive = false;
+function processAndRender(data) {
+  const teams = data.teams || {};
+  /* detect any live matches */
+  const hasLive = Object.values(teams).some(t => t.cls === "badge-playing");
 
-  matches.forEach(m => {
-    const live = LIVE_SET.has(m.status);
-    const fin  = m.status === "FINISHED";
-    if (live) hasLive = true;
-    [m.homeTeam.name, m.awayTeam.name].forEach(n => {
-      teamLookup[n.toLowerCase()] = { isLive: live, isFinished: fin };
-    });
-  });
-
-  /* resolve live status per sweepstake team */
-  function teamLiveStatus(apiNames) {
-    for (const n of apiNames) {
-      const entry = teamLookup[n.toLowerCase()];
-      if (entry) return entry.isLive ? "live" : entry.isFinished ? "finished" : null;
-    }
-    return null;
-  }
-
-  /* enrich sweepstake data */
+  /* enrich sweepstake — look up each team by display name directly */
   const enriched = SWEEPSTAKE.map(p => ({
     ...p,
-    teams: p.teams.map(t => ({ ...t, liveStatus: teamLiveStatus(t.apiNames) }))
+    teams: p.teams.map(t => {
+      const info = teams[t.name] || null;
+      const isLive = info && info.cls === "badge-playing";
+      return { ...t, info, liveStatus: isLive ? "live" : null };
+    })
   }));
 
   const alive = enriched.filter(p => p.teams.some(t => t.status === "qf"));
   const out   = enriched.filter(p => p.teams.every(t => t.status === "out"));
 
-  render(alive, out, hasLive);
+  render(alive, out, hasLive, data.lastUpdated || "");
 }
 
-function render(alive, out, hasLive) {
+function render(alive, out, hasLive, lastUpdated) {
   document.getElementById("loading").style.display = "none";
   document.getElementById("board").style.display   = "block";
   document.getElementById("stats").style.display   = "grid";
@@ -331,7 +308,7 @@ function render(alive, out, hasLive) {
   /* stats strip */
   document.getElementById("s-alive").textContent = alive.length;
   document.getElementById("s-out").textContent   = out.length;
-  document.getElementById("s-time").textContent  = new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+  document.getElementById("s-time").textContent  = lastUpdated || new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short"});
 
   /* status pill */
   if (hasLive) setStatus("Live now", true, false);
@@ -342,12 +319,15 @@ function render(alive, out, hasLive) {
 
   function badge(t) {
     if (t.liveStatus === "live") {
-      return `<span class="badge badge-live">🔴 ${t.name} <span class="badge-note">Live</span></span>`;
+      const score = t.info ? t.info.label : "Live";
+      return `<span class="badge badge-live">🔴 ${t.name} <span class="badge-note">${score}</span></span>`;
     }
     if (t.status === "qf") {
-      return `<span class="badge badge-qf">${t.name} <span class="badge-note">QF</span></span>`;
+      const record = t.info ? t.info.label : "QF";
+      return `<span class="badge badge-qf">${t.name} <span class="badge-note">${record}</span></span>`;
     }
-    return `<span class="badge badge-out">${t.name} <span class="badge-note">${t.note||""}</span></span>`;
+    const record = t.info ? t.info.label : (t.note || "");
+    return `<span class="badge badge-out">${t.name} <span class="badge-note">${record}</span></span>`;
   }
 
   function personCard(p, rank) {
